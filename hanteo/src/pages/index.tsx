@@ -6,11 +6,6 @@ import ContentList from "@/components/ContentList";
 // import Footer from "@/components/Footer";
 
 const initialTabs = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
-const _banners = [
-  "https://via.placeholder.com/768x300?text=Banner1",
-  "https://via.placeholder.com/768x300?text=Banner2",
-  "https://via.placeholder.com/768x300?text=Banner3",
-];
 
 const contents = [
   "세로형 콘텐츠 순위 영역",
@@ -31,16 +26,11 @@ const tabContents: Record<string, string[]> = {
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState(0);
-  const [tabs, _setTabs] = useState(initialTabs);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [tabs] = useState(initialTabs);
+  const [, setVisibleCount] = useState(10);
   const loader = useRef<HTMLDivElement>(null);
 
-  const _visibleTabs = tabs.slice(currentTab, currentTab + 3);
   const selectedTabName = tabs[currentTab];
-  const _currentContents = (tabContents[selectedTabName] || []).slice(
-    0,
-    visibleCount
-  );
 
   // 무한 스크롤 구현
   useEffect(() => {
@@ -52,10 +42,6 @@ export default function Home() {
     if (loader.current) observer.observe(loader.current);
     return () => observer.disconnect();
   }, [selectedTabName]);
-
-  // 좌우 스와이프 탭 이동
-  const _touchStartX = useRef(0);
-  const _touchEndX = useRef(0);
 
   return (
     <>
