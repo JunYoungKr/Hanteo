@@ -1,24 +1,10 @@
-// pages/index.tsx
 import { useEffect, useRef, useState } from "react";
 import TabHeader from "@/components/TabHeader";
 import { BannerSlider } from "@/components/BannerSlider";
 import ContentList from "@/components/ContentList";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 const initialTabs = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
-const _banners = [
-  "https://via.placeholder.com/768x300?text=Banner1",
-  "https://via.placeholder.com/768x300?text=Banner2",
-  "https://via.placeholder.com/768x300?text=Banner3",
-];
-
-const contents = [
-  "세로형 콘텐츠 순위 영역",
-  "컨텐츠 2",
-  "컨텐츠 3",
-  "컨텐츠 4",
-  "컨텐츠 5",
-];
 
 const tabContents: Record<string, string[]> = {
   차트: Array.from({ length: 30 }, (_, i) => `차트 콘텐츠 ${i + 1}`),
@@ -32,15 +18,12 @@ const tabContents: Record<string, string[]> = {
 export default function Home() {
   const [currentTab, setCurrentTab] = useState(0);
   const [tabs, _setTabs] = useState(initialTabs);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [, setVisibleCount] = useState(10);
   const loader = useRef<HTMLDivElement>(null);
 
   const _visibleTabs = tabs.slice(currentTab, currentTab + 3);
   const selectedTabName = tabs[currentTab];
-  const _currentContents = (tabContents[selectedTabName] || []).slice(
-    0,
-    visibleCount
-  );
+  const selectedContents = tabContents[selectedTabName] || [];
 
   // 무한 스크롤 구현
   useEffect(() => {
@@ -54,8 +37,6 @@ export default function Home() {
   }, [selectedTabName]);
 
   // 좌우 스와이프 탭 이동
-  const _touchStartX = useRef(0);
-  const _touchEndX = useRef(0);
 
   return (
     <>
@@ -71,14 +52,24 @@ export default function Home() {
           backgroundColor: "white",
           padding: "16px",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           width: "100%",
         }}
       >
         <BannerSlider />
-        {/* <Footer /> */}
+        <ContentList
+          title={`${selectedTabName} 콘텐츠`}
+          contents={selectedContents}
+          onSwipeLeft={() => {
+            setCurrentTab((prev) => Math.min(prev + 1, tabs.length - 1));
+          }}
+          onSwipeRight={() => {
+            setCurrentTab((prev) => Math.max(prev - 1, 0));
+          }}
+        />
+        <Footer />
       </div>
-      <ContentList title="콘텐츠 큐레이션 제목" contents={contents} />
     </>
   );
 }

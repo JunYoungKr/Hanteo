@@ -6,7 +6,16 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Card } from "./ui/card";
+import Link from "next/link";
+
+const bannerImages = [
+  { image: "../../images/banner1.png", link: "https://www.naver.com" },
+  { image: "../../images/banner2.png", link: "https://github.com/JunYoungKr" },
+  {
+    image: "../../images/banner3.png",
+    link: "https://junyoungkr-github.tistory.com/",
+  },
+];
 
 export const BannerSlider = () => {
   const plugin = React.useRef(
@@ -22,14 +31,19 @@ export const BannerSlider = () => {
       style={{}}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {bannerImages.map(({ image, link }, index) => (
           <CarouselItem key={index}>
-            <Card style={{ width: "100%", height: "100px" }}></Card>
+            <Link href={link} target="_blank">
+              <img
+                src={image}
+                alt={`배너 ${index + 1}`}
+                // style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                className="sm:w-[640px]"
+              />
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
-      {/* <CarouselPrevious /> */}
-      {/* <CarouselNext /> */}
     </Carousel>
   );
 };
