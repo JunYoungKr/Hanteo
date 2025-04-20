@@ -6,7 +6,7 @@ import ContentList from "@/components/ContentList";
 // import Footer from "@/components/Footer";
 
 const initialTabs = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
-const banners = [
+const _banners = [
   "https://via.placeholder.com/768x300?text=Banner1",
   "https://via.placeholder.com/768x300?text=Banner2",
   "https://via.placeholder.com/768x300?text=Banner3",
@@ -31,13 +31,13 @@ const tabContents: Record<string, string[]> = {
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState(0);
-  const [tabs, setTabs] = useState(initialTabs);
+  const [tabs, _setTabs] = useState(initialTabs);
   const [visibleCount, setVisibleCount] = useState(10);
   const loader = useRef<HTMLDivElement>(null);
 
-  const visibleTabs = tabs.slice(currentTab, currentTab + 3);
+  const _visibleTabs = tabs.slice(currentTab, currentTab + 3);
   const selectedTabName = tabs[currentTab];
-  const currentContents = (tabContents[selectedTabName] || []).slice(
+  const _currentContents = (tabContents[selectedTabName] || []).slice(
     0,
     visibleCount
   );
@@ -54,8 +54,8 @@ export default function Home() {
   }, [selectedTabName]);
 
   // 좌우 스와이프 탭 이동
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
+  const _touchStartX = useRef(0);
+  const _touchEndX = useRef(0);
 
   return (
     <>
