@@ -17,11 +17,10 @@ const tabContents: Record<string, string[]> = {
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState(0);
-  const [tabs, _setTabs] = useState(initialTabs);
+  const [tabs] = useState(initialTabs);
   const [, setVisibleCount] = useState(10);
   const loader = useRef<HTMLDivElement>(null);
 
-  const _visibleTabs = tabs.slice(currentTab, currentTab + 3);
   const selectedTabName = tabs[currentTab];
   const selectedContents = tabContents[selectedTabName] || [];
 
