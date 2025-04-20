@@ -15,14 +15,14 @@ const contents = [
   "컨텐츠 5",
 ];
 
-const tabContents: Record<string, string[]> = {
-  차트: Array.from({ length: 30 }, (_, i) => `차트 콘텐츠 ${i + 1}`),
-  Whook: Array.from({ length: 20 }, (_, i) => `Whook 콘텐츠 ${i + 1}`),
-  이벤트: Array.from({ length: 15 }, (_, i) => `이벤트 콘텐츠 ${i + 1}`),
-  뉴스: Array.from({ length: 10 }, (_, i) => `뉴스 콘텐츠 ${i + 1}`),
-  스토어: Array.from({ length: 25 }, (_, i) => `스토어 콘텐츠 ${i + 1}`),
-  충전소: Array.from({ length: 12 }, (_, i) => `충전소 콘텐츠 ${i + 1}`),
-};
+// const tabContents: Record<string, string[]> = {
+//   차트: Array.from({ length: 30 }, (_, i) => `차트 콘텐츠 ${i + 1}`),
+//   Whook: Array.from({ length: 20 }, (_, i) => `Whook 콘텐츠 ${i + 1}`),
+//   이벤트: Array.from({ length: 15 }, (_, i) => `이벤트 콘텐츠 ${i + 1}`),
+//   뉴스: Array.from({ length: 10 }, (_, i) => `뉴스 콘텐츠 ${i + 1}`),
+//   스토어: Array.from({ length: 25 }, (_, i) => `스토어 콘텐츠 ${i + 1}`),
+//   충전소: Array.from({ length: 12 }, (_, i) => `충전소 콘텐츠 ${i + 1}`),
+// };
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState(0);
